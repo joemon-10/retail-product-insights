@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="acb0ac2e-4bc1-45e3-9e95-0d7447ac37a9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Data/Online_Retail.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notebooks/.ipynb_checkpoints/product_segmentation_apriori-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notebooks/product_segmentation_apriori.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +36,7 @@
   "keyToString": {
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "kmeans-clustering"
   }
 }]]></component>
   <component name="RecentsManager">
