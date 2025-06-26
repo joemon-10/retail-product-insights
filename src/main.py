@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
 
 df = pd.read_csv('../Data/Online_Retail.csv')
 # Drop missing values
@@ -34,7 +35,6 @@ X = sc.fit_transform(X)
 
 # KMeans clustering
 # Finding the optimal no of clusters
-from sklearn.cluster import KMeans
 
 wcss = []
 for i in range(1, 11):
