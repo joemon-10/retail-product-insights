@@ -1,5 +1,8 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+import scipy.cluster.hierarchy as sch
+from sklearn.cluster import AgglomerativeClustering
 
 df = pd.read_csv('../Data/Online_Retail.csv')
 # Drop missing values
@@ -30,3 +33,18 @@ X = product_df.iloc[:, [2, 3, 4]]
 # Feature scaling
 sc = StandardScaler()
 X = sc.fit_transform(X)
+
+# To find optimal clusters using dendrogram
+dendrogram = sch.dendrogram(sch.linkage(X, method='ward'))
+plt.show()
+
+# Dendrogram shows the number of optimal clusters as 3
+hc = AgglomerativeClustering(n_clusters=3, linkage='ward')
+y_hc = hc.fit_predict(X)
+
+# Inserting the cluster label to the product data frame
+product_df['Cluster'] = y_hc
+
+# Grouping by the clusters
+cluster_summary = product_df.groupby('Cluster')[['TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']].mean()
+print(cluster_summary)
