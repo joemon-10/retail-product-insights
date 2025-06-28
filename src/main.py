@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+import scipy.cluster.hierarchy as sch
+from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import KMeans
 
 df = pd.read_csv('../Data/Online_Retail.csv')
@@ -34,8 +36,8 @@ sc = StandardScaler()
 X = sc.fit_transform(X)
 
 # KMeans clustering
-# Finding the optimal no of clusters
 
+# Finding the optimal no of clusters
 wcss = []
 for i in range(1, 11):
     km = KMeans(n_clusters=i, init='k-means++', random_state=0)
@@ -44,15 +46,20 @@ for i in range(1, 11):
 plt.plot(range(1, 11), wcss)
 plt.xlabel('No. of clusters')
 plt.ylabel('WCSS')
-# plt.show()
+plt.show()
 
 # By elbow method, optimal number of clusters is 3
 km = KMeans(n_clusters=3, init='k-means++', random_state=0)
 y_kmeans = km.fit_predict(X)
 
 # Inserting the cluster label to the product data frame
-product_df['Cluster'] = y_kmeans
+product_df['Cluster(KMeans)'] = y_kmeans
 
-# Grouping by the clusters
-cluster_summary = product_df.groupby('Cluster')[['TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']].mean()
-print(cluster_summary)
+
+# Grouping by the kmeans clusters
+km_cluster_summary = product_df.groupby('Cluster(KMeans)')[['TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']].mean()
+print("KMeans Cluster Summary:")
+print(km_cluster_summary)
+
+
+
