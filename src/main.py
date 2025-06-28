@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
-import scipy.cluster.hierarchy as sch
-from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import KMeans
 
 df = pd.read_csv('../Data/Online_Retail.csv')
@@ -29,7 +27,7 @@ product_df['TotalRevenue'] = product_df['TotalQuantitySold'] * product_df['AvgUn
 product_df = product_df.reset_index()
 
 # Feature selection
-X = product_df.iloc[:, [2, 3, 4]]
+X = product_df.iloc[:, ['TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']]
 
 # Feature scaling
 sc = StandardScaler()
