@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 import scipy.cluster.hierarchy as sch
 from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import KMeans
 
 df = pd.read_csv('../Data/Online_Retail.csv')
 # Drop missing values
@@ -34,17 +35,31 @@ X = product_df.iloc[:, [2, 3, 4]]
 sc = StandardScaler()
 X = sc.fit_transform(X)
 
-# To find optimal clusters using dendrogram
-dendrogram = sch.dendrogram(sch.linkage(X, method='ward'))
+# KMeans clustering
+
+# Finding the optimal no of clusters
+wcss = []
+for i in range(1, 11):
+    km = KMeans(n_clusters=i, init='k-means++', random_state=0)
+    km.fit(X)
+    wcss.append(km.inertia_)
+plt.plot(range(1, 11), wcss)
+plt.xlabel('No. of clusters')
+plt.ylabel('WCSS')
 plt.show()
 
-# Dendrogram shows the number of optimal clusters as 3
-hc = AgglomerativeClustering(n_clusters=3, linkage='ward')
-y_hc = hc.fit_predict(X)
+# By elbow method, optimal number of clusters is 3
+km = KMeans(n_clusters=3, init='k-means++', random_state=0)
+y_kmeans = km.fit_predict(X)
 
 # Inserting the cluster label to the product data frame
-product_df['Cluster'] = y_hc
+product_df['Cluster(KMeans)'] = y_kmeans
 
-# Grouping by the clusters
-cluster_summary = product_df.groupby('Cluster')[['TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']].mean()
-print(cluster_summary)
+
+# Grouping by the kmeans clusters
+km_cluster_summary = product_df.groupby('Cluster(KMeans)')[['TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']].mean()
+print("KMeans Cluster Summary:")
+print(km_cluster_summary)
+
+
+
