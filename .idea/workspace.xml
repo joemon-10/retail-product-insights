@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acb0ac2e-4bc1-45e3-9e95-0d7447ac37a9" name="Changes" comment="Small edits">
+    <list default="true" id="acb0ac2e-4bc1-45e3-9e95-0d7447ac37a9" name="Changes" comment="Product segmentation done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notebooks/1_product_segmentation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Notebooks/1_product_segmentation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,11 +90,20 @@
       <option name="project" value="LOCAL" />
       <updated>1751127859726</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Product segmentation done">
+      <option name="closed" value="true" />
+      <created>1751186254282</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1751186254283</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Small edits" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small edits" />
+    <MESSAGE value="Product segmentation done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Product segmentation done" />
   </component>
 </project>
