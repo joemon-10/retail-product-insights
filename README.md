@@ -67,4 +67,5 @@ These segments help the business prioritize inventory, promotions, and marketing
 
 The final product-level dataset with assigned cluster labels has been exported as:
 [📄 clustered_product_data.csv](./Data/clustered_product_data.csv)
+
 This serves as a foundation for the next phase of the project — Market Basket Analysis — which will uncover associations between products and improve cross-selling strategies.
