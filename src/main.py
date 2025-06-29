@@ -27,7 +27,7 @@ product_df['TotalRevenue'] = product_df['TotalQuantitySold'] * product_df['AvgUn
 product_df = product_df.reset_index()
 
 # Feature selection
-X = product_df.iloc[:, ['TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']]
+X = product_df.loc[:, ['TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']]
 
 # Feature scaling
 sc = StandardScaler()
@@ -59,3 +59,10 @@ km_cluster_summary = product_df.groupby('Cluster(KMeans)')[[
     'TotalQuantitySold', 'AvgUnitPrice', 'TransactionCount']].mean()
 print("KMeans Cluster Summary:")
 print(km_cluster_summary)
+
+product_df['Cluster(KMeans)'] = product_df['Cluster(KMeans)'].replace({
+    0: 'Low Volume - Low Price',
+    1: 'High Volume - Low Price',
+    2: 'Moderate Volume - High Price'
+})
+print(product_df.head())
