@@ -1,30 +1,33 @@
-# Product Segmentation and Market Basket Analysis
+# Product Segmentation in Retail Using KMeans Clustering
 
 While exploring customer segmentation with the UCI Online Retail dataset, I came across a research paper that applied RFM analysis to cluster customers. That sparked a question:
 
-> 💡 "If we can segment customers to improve targeting, why not segment the **products** themselves to improve profit?"
+> "If we can segment customers to improve targeting, why not segment the **products** themselves to improve profitability?"
 
-This project flips the lens — instead of analyzing who is buying, we’re analyzing **what is being bought**.
-
----
-
-## 🎯 Objective
-
-- Segment products based on their sales behavior (price, quantity, volume)
-- Discover co-purchased product combinations using association rule mining *(to be done)*
-
-These insights can help businesses — especially those serving wholesale buyers — improve bundling, cross-selling, and inventory planning.
+This project flips the lens — instead of analyzing who is buying, we analyze **what is being bought**.
 
 ---
 
-## 📄 Dataset Info
+## Objective
 
-This project uses the Online Retail dataset from the UCI Machine Learning Repository.  
-It contains transactions made by a UK-based online retailer over a one-year period, capturing detailed information about each item sold, when it was sold, and to which country.
+The primary objective of this project is to **segment products based on their sales behavior** using unsupervised learning.  
+By grouping products with similar pricing, sales volume, and purchase frequency, the project aims to support better:
 
-- **Source**: [UCI Online Retail Data](https://archive.ics.uci.edu/ml/datasets/Online+Retail)  
-- **Rows**: >500,000 transactions  
-- **Period**: December 2010 – December 2011
+- Inventory planning  
+- Pricing and promotion strategies  
+- Product-level decision-making  
+
+---
+
+## Dataset Info
+
+This project uses the **Online Retail** dataset from the UCI Machine Learning Repository.  
+It contains transactional data from a UK-based online retailer over a one-year period.
+
+- **Source**: https://archive.ics.uci.edu/ml/datasets/Online+Retail  
+- **Rows**: Over 500,000 transactions  
+- **Period**: December 2010 – December 2011  
+- **Currency**: GBP  
 
 | Column       | Description                              |
 |--------------|------------------------------------------|
@@ -33,39 +36,53 @@ It contains transactions made by a UK-based online retailer over a one-year peri
 | Description  | Product name                             |
 | Quantity     | Number of items purchased                |
 | InvoiceDate  | Date and time of transaction             |
-| UnitPrice    | Price per item (in GBP)                  |
+| UnitPrice    | Price per item (GBP)                     |
 | CustomerID   | Unique customer identifier               |
 | Country      | Country where the transaction occurred   |
 
 ---
 
-## 🧠 Project Flow
+## Project Flow
 
-We began by cleaning and preparing the data, removing records with missing values and converting date-related fields to the appropriate format. Instead of focusing on customer segmentation like the original paper, we aggregated data at the product level to understand each product’s performance over the year.
+The analysis begins with data cleaning and preprocessing, including handling missing values and converting date-related fields to appropriate formats.  
+Instead of performing customer-level analysis, the data is aggregated at the **product level** to evaluate each product’s overall sales performance.
 
-Next, we engineered key features: the total quantity sold, average unit price, and the number of transactions in which each product appeared. These features were chosen to reflect volume, value, and popularity.
+Key features are then engineered for each product, including:
+- Total quantity sold  
+- Average unit price  
+- Number of transactions  
 
-After standardizing the features, we applied KMeans clustering to group products with similar sales patterns. Based on the elbow method, three distinct product clusters emerged.
+These features were selected to capture product volume, value, and popularity.
 
-Each cluster was then analyzed to understand its characteristics and business significance. We replaced numeric labels with interpretable names to communicate insights clearly.
+After standardizing the features, **KMeans clustering** is applied to segment products with similar sales behavior.  
+The elbow method is used to determine the optimal number of clusters, resulting in three distinct product segments.
 
----
-
-## 🔍 Product Segments and Recommendations
-
-| Segment Name                | Description                                                                 | Recommendation                                                                 |
-|----------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| Low Volume - Low Price     | Products that sell infrequently and generate low revenue                    | Bundle with popular items or phase out if no longer relevant                    |
-| High Volume - Low Price    | Fast-moving, frequently purchased products that are essential to the catalog| Ensure consistent stock, consider discounts for bulk purchases                  |
-| Moderate Volume - High Price| Premium items that sell moderately but contribute significantly to revenue  | Highlight in marketing campaigns and upsell to high-value customers            |
-
-These segments help the business prioritize inventory, promotions, and marketing based on product behavior rather than just raw sales numbers.
+Finally, each cluster is analyzed and assigned an interpretable label to clearly communicate its business significance.
 
 ---
 
-## 📦 Output
+## Product Segments and Recommendations
 
-The final product-level dataset with assigned cluster labels has been exported as:
-[📄 clustered_product_data.csv](./Data/clustered_product_data.csv)
+| Segment Name                 | Description                                                   | Recommendation                                               |
+|------------------------------|---------------------------------------------------------------|--------------------------------------------------------------|
+| Low Volume - Low Price       | Products with low demand and low revenue contribution         | Bundle with popular products or evaluate for discontinuation |
+| High Volume - Low Price      | Fast-moving, frequently purchased products                    | Ensure consistent stock and optimize bulk pricing strategies |
+| Moderate Volume - High Price | Premium products with lower frequency but high per-unit value | Promote through targeted marketing and premium positioning   |
 
-This serves as a foundation for the next phase of the project — Market Basket Analysis — which will uncover associations between products and improve cross-selling strategies.
+This segmentation highlights the natural imbalance in retail catalogs, where a large number of low-value products coexist with a smaller set of high-impact items. The clusters enable differentiated strategies rather than one-size-fits-all decisions.
+
+---
+
+## Output
+
+The final product-level dataset with cluster labels is available here:
+
+[clustered_product_data.csv](./Data/clustered_product_data.csv)
+
+This dataset can be directly used for downstream analysis such as pricing optimization, catalog restructuring, or recommendation strategy development.
+
+---
+
+## Future Work
+
+Potential extensions of this project include applying **market basket analysis** to identify frequently co-purchased products and exploring how different product segments interact within transactions.
